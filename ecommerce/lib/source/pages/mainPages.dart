@@ -19,6 +19,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   bool isHomePageSelected = true;
+
   Widget _appBar() {
     return Container(
       padding: AppTheme.padding,
@@ -29,86 +30,90 @@ class _MainPageState extends State<MainPage> {
             quarterTurns: 4,
             child: _icon(Icons.sort, color: Colors.black54),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(13)),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor,
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Color(0xfff8f8f8),
-                      blurRadius: 10,
-                      spreadRadius: 10),
-                ],
-              ),
-              child: Image.asset("assets/user.png"),
-            ),
-          ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)))
+          _userProfileIcon(),
         ],
       ),
     );
+  }
+
+  Widget _userProfileIcon() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(13),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Color(0xfff8f8f8),
+              blurRadius: 10,
+              spreadRadius: 10,
+            ),
+          ],
+        ),
+        child: Image.asset("assets/user.png"),
+      ),
+    ).ripple(() {}, borderRadius: BorderRadius.circular(13));
   }
 
   Widget _icon(IconData icon, {Color color = LightColor.iconColor}) {
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(13)),
-          color: Theme.of(context).backgroundColor,
-          boxShadow: AppTheme.shadow),
+        borderRadius: BorderRadius.circular(13),
+        color: Theme.of(context).backgroundColor,
+        boxShadow: AppTheme.shadow,
+      ),
       child: Icon(
         icon,
         color: color,
       ),
-    ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
+    ).ripple(() {}, borderRadius: BorderRadius.circular(13));
   }
 
   Widget _title() {
     return Container(
-        margin: AppTheme.padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TitleText(
-                  text: isHomePageSelected ? 'Our' : 'Shopping',
-                  fontSize: 27,
-                  fontWeight: FontWeight.w400,
-                ),
-                TitleText(
-                  text: isHomePageSelected ? 'Products' : 'Cart',
-                  fontSize: 27,
-                  fontWeight: FontWeight.w700,
-                ),
-              ],
+      margin: AppTheme.padding,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _pageTitleText(isHomePageSelected ? 'Our' : 'Shopping'),
+              _pageTitleText(isHomePageSelected ? 'Products' : 'Cart'),
+            ],
+          ),
+          Spacer(),
+          _deleteIcon(),
+        ],
+      ),
+    );
+  }
+
+  Widget _pageTitleText(String text) {
+    return TitleText(
+      text: text,
+      fontSize: 27,
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  Widget _deleteIcon() {
+    return !isHomePageSelected
+        ? Container(
+            padding: EdgeInsets.all(10),
+            child: Icon(
+              Icons.delete_outline,
+              color: LightColor.orange,
             ),
-            Spacer(),
-            !isHomePageSelected
-                ? Container(
-                    padding: EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.delete_outline,
-                      color: LightColor.orange,
-                    ),
-                  ).ripple(() {},
-                    borderRadius: BorderRadius.all(Radius.circular(13)))
-                : SizedBox()
-          ],
-        ));
+          ).ripple(() {}, borderRadius: BorderRadius.circular(13))
+        : SizedBox();
   }
 
   void onBottomIconPressed(int index) {
-    if (index == 0 || index == 1) {
-      setState(() {
-        isHomePageSelected = true;
-      });
-    } else {
-      setState(() {
-        isHomePageSelected = false;
-      });
-    }
+    setState(() {
+      isHomePageSelected = index == 0 || index == 1;
+    });
   }
 
   @override
@@ -151,7 +156,7 @@ class _MainPageState extends State<MainPage> {
                                 child: ShoppingCartPage(),
                               ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -162,8 +167,9 @@ class _MainPageState extends State<MainPage> {
               child: CustomBottomNavigationBar(
                 onIconPresedCallback: onBottomIconPressed,
                 key: UniqueKey(),
+                onIconPressedCallback: (int index) {},
               ),
-            )
+            ),
           ],
         ),
       ),
