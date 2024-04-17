@@ -18,6 +18,21 @@ class AppData {
         isliked: false,
         image: 'assets/shoe_tilt_2.png',
         category: "Trending Now"),
+    Product(
+        id: 3,
+        name: 'Nike Air Max 300',
+        price: 240.00,
+        isSelected: true,
+        isliked: false,
+        image: 'assets/shooe_tilt_1.png',
+        category: "Trending Now"),
+    Product(
+        id: 4,
+        name: 'Nike Jordan 4',
+        price: 220.00,
+        isliked: false,
+        image: 'assets/shoe_tilt_2.png',
+        category: "Trending Now"),
   ];
   static List<Product> cartList = [
     Product(
@@ -49,6 +64,28 @@ class AppData {
         isSelected: true,
         isliked: false,
         image: 'assets/small_tilt_shoe_1.png',
+        category: "Trending Now"),
+    Product(
+        id: 2,
+        name: 'Nike Air Max 97',
+        price: 220.00,
+        isliked: false,
+        image: 'assets/shoe_tilt_2.png',
+        category: "Trending Now"),
+    Product(
+        id: 3,
+        name: 'Nike Air Max 300',
+        price: 240.00,
+        isSelected: true,
+        isliked: false,
+        image: 'assets/shooe_tilt_1.png',
+        category: "Trending Now"),
+    Product(
+        id: 4,
+        name: 'Nike Jordan 4',
+        price: 220.00,
+        isliked: false,
+        image: 'assets/shoe_tilt_2.png',
         category: "Trending Now"),
     // Product(
     //     id:1,

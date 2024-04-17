@@ -1,4 +1,5 @@
 import 'package:ecommerce/source/model/data.dart';
+import 'package:ecommerce/source/pages/checkout_page.dart';
 import 'package:ecommerce/source/themes/light_color.dart';
 import 'package:ecommerce/source/themes/theme.dart';
 import 'package:ecommerce/source/widgets/extentions.dart';
@@ -98,7 +99,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Color(0xfff8f8f8),
-            blurRadius: 5,
+            blurRadius: 5
             spreadRadius: 10,
             offset: Offset(5, 5),
           ),
@@ -371,9 +372,11 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   }
 
   void _addToCart() {
-    // Xử lý khi người dùng nhấn vào nút Floating Action Button
-    print('Add to cart button pressed!');
-    // Thêm các hành động khác tùy thuộc vào yêu cầu của ứng dụng của bạn
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => CheckoutPage(
+        cartList: [],
+      ),
+    ));
   }
 
   @override

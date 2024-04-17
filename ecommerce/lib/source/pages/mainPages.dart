@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
       borderRadius: BorderRadius.circular(13),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           boxShadow: <BoxShadow>[
             BoxShadow(
               color: Color(0xfff8f8f8),
@@ -136,7 +136,7 @@ class _MainPageState extends State<MainPage> {
                     end: Alignment.bottomCenter,
                   ),
                 ),
-                child: Column(
+                child: Column(  
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     _appBar(),

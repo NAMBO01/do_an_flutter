@@ -20,8 +20,9 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (RouteSettings settings) {
         if (settings.name!.contains('detail')) {
           return CustomRoute<bool>(
-            builder: (BuildContext context) =>
-                ProductDetailPage(key: UniqueKey()),
+            builder: (BuildContext context) => ProductDetailPage(
+              key: UniqueKey(),
+            ),
             settings: settings, // Pass the settings argument here
           );
         } else {

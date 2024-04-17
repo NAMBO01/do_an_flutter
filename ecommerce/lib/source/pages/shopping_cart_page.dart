@@ -1,5 +1,6 @@
 import 'package:ecommerce/source/model/data.dart';
 import 'package:ecommerce/source/model/product.dart';
+import 'package:ecommerce/source/pages/checkout_page.dart';
 import 'package:ecommerce/source/themes/light_color.dart';
 import 'package:ecommerce/source/themes/theme.dart';
 import 'package:ecommerce/source/widgets/title_text.dart';
@@ -105,7 +106,15 @@ class ShoppingCartPage extends StatelessWidget {
 
   Widget _submitButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        // Navigate to CheckoutPage, passing cartList
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CheckoutPage(cartList: AppData.cartList),
+          ),
+        );
+      },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         backgroundColor: LightColor.orange,
